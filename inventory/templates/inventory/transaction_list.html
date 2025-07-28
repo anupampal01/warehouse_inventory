@@ -1,0 +1,19 @@
+{% extends 'inventory/base.html' %}
+{% block content %}
+<h2>Transactions</h2>
+<a href="/transactions/new/" class="btn btn-success mb-2">Add Transaction</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Remarks</th>
+    </tr>
+    {% for tx in transactions %}
+    <tr>
+        <td>{{ tx.get_transaction_type_display }}</td>
+        <td>{{ tx.date }}</td>
+        <td>{{ tx.remarks }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

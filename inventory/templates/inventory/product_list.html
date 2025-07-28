@@ -1,0 +1,26 @@
+{% extends 'inventory/base.html' %}
+{% block content %}
+<h2>Products</h2>
+<a href="/products/new/" class="btn btn-success mb-2">Add Product</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock_quantity }}</td>
+        <td>
+            <a href="/products/{{ product.id }}/edit/" class="btn btn-primary btn-sm">Edit</a>
+            <a href="/products/{{ product.id }}/delete/" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
