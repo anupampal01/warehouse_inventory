@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from django.contrib.auth import get_user_model
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,3 +69,17 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ----------------------------
+# AUTO-CREATE SUPERUSER (Free Plan Workaround)
+# ----------------------------
+# This will only run once when no superuser named "Anupam" exists.
+# After first login, REMOVE this block for security.
+
+User = get_user_model()
+if not User.objects.filter(username="Anupam").exists():
+    User.objects.create_superuser(
+        username="Anupam",
+        email="anupampal1307@gmail.com",
+        password="12345678"
+    )
